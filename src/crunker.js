@@ -27,7 +27,7 @@ export default class Crunker {
   mergeAudio(buffers) {
     let output = this._context.createBuffer(
       1,
-      this._sampleRate * this._maxDuration(buffers),
+      this._sampleRate * this._durationOfFirst(buffers),
       this._sampleRate
     );
 
@@ -95,6 +95,10 @@ export default class Crunker {
 
   _maxDuration(buffers) {
     return Math.max.apply(Math, buffers.map(buffer => buffer.duration));
+  }
+
+  _durationOfFirst(buffers) {
+    return buffers[0].duration;
   }
 
   _totalLength(buffers) {
