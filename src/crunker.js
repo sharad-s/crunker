@@ -1,4 +1,10 @@
 "use strict";
+const AudioContext = require("web-audio-api").AudioContext;
+
+// Promisify readFile
+const fs = require("fs");
+const util = require("util");
+const readFile = util.promisify(fs.readFile);
 
 export default class Crunker {
   constructor({ sampleRate = 44100 } = {}) {
@@ -7,16 +13,16 @@ export default class Crunker {
   }
 
   _createContext() {
-    window.AudioContext =
-      window.AudioContext ||
-      window.webkitAudioContext ||
-      window.mozAudioContext;
+    // window.AudioContext =
+    //   window.AudioContext ||
+    //   window.webkitAudioContext ||
+    //   window.mozAudioContext;
     return new AudioContext();
   }
 
   async fetchAudio(...filepaths) {
     const files = filepaths.map(async filepath => {
-      const buffer = await fetch(filepath).then(response =>
+      const buffer = await readFile(filepath).then(response =>
         response.arrayBuffer()
       );
       return await this._context.decodeAudioData(buffer);

@@ -10,7 +10,8 @@
   "scripts": {
     "build:test": "webpack --config webpack.test.config.js --mode development",
     "build:prod": "webpack --config webpack.config.js --mode production",
-    "prepare": "npm run build:prod"
+    "build:dev":"babel src/crunker.js -o dist/crunker.babel.js",
+    "prepare": "npm run build:dev"
   },
   "repository": {
     "type": "git",
@@ -48,5 +49,8 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {
+    "web-audio-api": "^0.2.2"
   }
 }
