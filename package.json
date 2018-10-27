@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jackedgson/crunker.git"
+    "url": "git+https://github.com/sharad-s/crunker.git"
   },
   "keywords": [
     "web-audio-api",
